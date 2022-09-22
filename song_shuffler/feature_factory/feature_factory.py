@@ -1,7 +1,6 @@
 from feature_factory.dance_feature.dance_feature import DanceFeature
 
 
-FEATURES_NAMES = ['chill', 'hype', 'rap', 'french', 'hebrew', 'live']
 
 class FeatureFactory:
 

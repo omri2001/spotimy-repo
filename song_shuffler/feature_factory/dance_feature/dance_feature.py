@@ -1,7 +1,7 @@
 from typing import Dict
 
 from feature_factory.feature import Feature
-from configs.song_features_config import SONG_DANCE_FEATURE
+from common.song_features_config import SONG_DANCE_FEATURE
 
 class DanceFeature(Feature):
 

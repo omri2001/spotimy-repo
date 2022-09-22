@@ -1,6 +1,5 @@
 from typing import List
 
-#this class should return the song id or handle single songs
 class SongHandler:
 
     def __init__(self, spotify):

@@ -1,9 +1,9 @@
 import uvicorn
 import spotipy as sp
-from fastapi import FastAPI
+from fastapi import FastAPI, requests
 from pydantic import BaseModel
 
-from client_facade.client import Client
+from spotipy_facade.client import Client
 
 app = FastAPI()
 
@@ -20,12 +20,9 @@ def login(client_inp: ClientInp):
 @app.api_route('/play')
 def resume_playback(client: Client):
 
-
-
-
 @app.api_route('/{')
 def main_app():
-    token = list(request.query_params.values())[0]
+    token = list(requests.query_params.values())[0]
     print(token['access_token'])
     return 'init app'
 
