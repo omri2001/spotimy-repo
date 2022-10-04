@@ -3,7 +3,7 @@ import spotipy as sp
 from fastapi import FastAPI, requests
 from pydantic import BaseModel
 
-from spotipy_facade.client import Client
+from client import Client
 
 app = FastAPI()
 

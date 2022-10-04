@@ -1,15 +1,14 @@
 
 
-class AlbumHandler:
+class AlbumManager:
 
-    def __init__(self, spotify):
-        self.spotify = spotify
+    def __init__(self, spotify_obj):
+        self.spotify = spotify_obj
 
     def get_library_albums(self):
         return [album.album for album in self.spotify.all_items(self.spotify.saved_albums())]
 
-    @property
-    def get_id(self, album):
+    def get_album_id(self, album):
         return album.id
 
     def get_album_songs(self, album):

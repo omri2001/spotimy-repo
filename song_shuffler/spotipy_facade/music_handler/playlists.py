@@ -1,10 +1,10 @@
 
 
-class PlaylistHandler:
+class PlaylistManager:
 
-    def __init__(self, spotify, username):
-        self.spotify = spotify
-        self.username = username
+    def __init__(self, spotify_obj):
+        self.spotify = spotify_obj
+        self.username = spotify_obj.current_user()['id']
 
     def get_playlist_songs(self, playlist):
         playlist_id = self.get_playlist_id(playlist)
