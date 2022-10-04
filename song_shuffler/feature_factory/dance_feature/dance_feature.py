@@ -7,7 +7,7 @@ class DanceFeature(Feature):
 
     def __init__(self):
         self.name = 'Dance'
-        self.weight = 0
+        self.weight = 1
         super().__init__(self.name, self.weight)
 
     def calculate(self, song_features: Dict[str, float]):

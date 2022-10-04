@@ -30,9 +30,11 @@ class SongList:
     def remove(self, songs: Union[Song, List[Song]]):
         if not isinstance(songs, list):
             songs = [songs]
-
         for song in songs:
             self.songs.remove(song)
 
-    def __add__(self, other: SongList) -> List[Song]:
-        return self.songs + other.songs
+    def __getitem__(self, item):
+        return self.songs[item]
+
+    def __len__(self):
+        return len(self.songs)

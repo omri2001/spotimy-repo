@@ -1,5 +1,5 @@
 
-
+#need reformating
 class AlbumManager:
 
     def __init__(self, spotify_obj):

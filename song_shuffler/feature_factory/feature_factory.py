@@ -6,7 +6,8 @@ class FeatureFactory:
 
     @staticmethod
     def get_features():
-        return [DanceFeature()
+        return [DanceFeature(),
+                #Popularity() to be implemented
                 ]
 
     @staticmethod
