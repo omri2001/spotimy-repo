@@ -2,8 +2,9 @@ import uvicorn
 import spotipy as sp
 from fastapi import FastAPI, requests
 from pydantic import BaseModel
+import tekore as tk
 
-from client import Client
+from song_shuffler.client import Client
 
 app = FastAPI()
 
@@ -19,6 +20,7 @@ def login(client_inp: ClientInp):
 
 @app.api_route('/play')
 def resume_playback(client: Client):
+    pass
 
 @app.api_route('/{')
 def main_app():

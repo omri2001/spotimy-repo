@@ -2,8 +2,8 @@ from typing import List, Dict, Any
 
 from spotipy import Spotify
 
-from playlist_manipulator.song import Song
-from spotipy_facade.utils import get_all_pages
+from song_shuffler.playlist_manipulator.song import Song
+from song_shuffler.spotipy_facade.utils import get_all_pages
 
 
 class SongManager:

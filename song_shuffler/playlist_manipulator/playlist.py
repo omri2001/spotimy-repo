@@ -1,8 +1,8 @@
 import random
 from typing import List
 
-from playlist_manipulator.song import Song
-from playlist_manipulator.song_list import SongList
+from song_shuffler.playlist_manipulator.song import Song
+from song_shuffler.playlist_manipulator.song_list import SongList
 
 
 class Playlist:
@@ -26,11 +26,11 @@ class Playlist:
         self.unplayed.add(songs)
 
     def normalize(self):
-        #needs to be all weights
+        # needs to be all weights
         self.unplayed.normalize_weights()
 
     def play_song(self):
-        #maybe problem is you can ad a song to be next but never play it but itll be like it played
+        # maybe problem is you can ad a song to be next but never play it but itll be like it played
         song = self.unplayed[0]
         self.unplayed.remove(song)
         self.played.add(song)
@@ -41,7 +41,7 @@ class Playlist:
         self.played.add(song)
 
     def random_shuffle(self):
-        random.shuffle(self.unplayed)
+        random.shuffle(self.unplayed.songs)
 
     def reset_playlist(self):
         self.unplayed = SongList(self.unplayed.songs() + self.played.songs())
@@ -49,3 +49,27 @@ class Playlist:
 
     def get_all_songs(self) -> List[Song]:
         return self.unplayed + self.played()
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.unplayed:
+            return self.play_song()
+        else:
+            raise StopIteration
+
+    def __getitem__(self, slice_obj):
+        if isinstance(slice_obj, int):
+            return self.unplayed[slice_obj]
+        start, stop, step = slice_obj.start, slice_obj.stop, slice_obj.step
+        if not start:
+            start = 0
+        if not stop:
+            step = 1
+        if not step:
+            stop = len(self.unplayed)
+        return self.unplayed[start:stop:step]
+
+    def __len__(self):
+        return len(self.unplayed)

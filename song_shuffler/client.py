@@ -1,8 +1,8 @@
-from spotimy_player import SpotimyPlayer
-from spotipy_facade.music_handler.music_manager import MusicManager
-from spotipy_facade.scopes.scopes_factory import ScopeFactory
-from common.spotify_parsers import REDIRECT_URI
-from spotipy_facade.spotimy import Spotimy
+from song_shuffler.spotimy_player import SpotimyPlayer
+from song_shuffler.spotipy_facade.music_handler.music_manager import MusicManager
+from song_shuffler.spotipy_facade.scopes.scopes_factory import ScopeFactory
+from song_shuffler.common.spotify_parsers import REDIRECT_URI
+from song_shuffler.spotipy_facade.spotimy import Spotimy
 
 
 class Client(Spotimy):

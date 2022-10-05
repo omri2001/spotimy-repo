@@ -2,10 +2,10 @@ from typing import Dict
 import pickle
 from os import listdir
 
-from feature_factory.feature import Feature
-from feature_factory.feature_factory import FeatureFactory
+from song_shuffler.feature_factory.feature import Feature
+from song_shuffler.feature_factory.feature_factory import FeatureFactory
 
-save_path = r"C:\Users\USER\Desktop\song_app\song_shuffler\songs_database\song_save"
+save_path = r"C:\Users\USER\Desktop\song_app\song_shuffler\playlist_manipulator\song_save"
 
 
 class Song:
@@ -35,7 +35,7 @@ class Song:
     def _init_features(self) -> Dict[str, Feature]:
         if self._is_song_exist():
             return self._load_features()
-        return {feature.get_name(): feature for feature in FeatureFactory.get_features()}
+        return {feature.name: feature for feature in FeatureFactory.get_features()}
 
     def _is_song_exist(self) -> bool:
         return self.id in listdir(save_path)

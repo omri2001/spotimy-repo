@@ -10,3 +10,5 @@ song_shuffler/__pycache__/
 song_shuffler/playlist_manipulator/__pycache__/
 
 .idea/
+
+.cache

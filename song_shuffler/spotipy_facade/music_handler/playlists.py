@@ -2,9 +2,9 @@ from typing import List
 
 from spotipy import Spotify
 
-from playlist_manipulator.song import Song
-from spotipy_facade.music_handler.songs import SongManager
-from spotipy_facade.utils import get_all_pages
+from song_shuffler.playlist_manipulator.song import Song
+from song_shuffler.spotipy_facade.music_handler.songs import SongManager
+from song_shuffler.spotipy_facade.utils import get_all_pages
 
 
 class PlaylistManager:

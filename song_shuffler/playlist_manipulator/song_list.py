@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import List, Union
 
-from playlist_manipulator.song import Song
+from song_shuffler.playlist_manipulator.song import Song
 
 
 
@@ -33,8 +33,17 @@ class SongList:
         for song in songs:
             self.songs.remove(song)
 
-    def __getitem__(self, item):
-        return self.songs[item]
+    def __getitem__(self, slice_obj):
+        if isinstance(slice_obj, int):
+            return self.songs[slice_obj]
+        start, stop, step = slice_obj.start, slice_obj.stop, slice_obj.step
+        if not start:
+            start = 0
+        if not stop:
+            step = 1
+        if not step:
+            stop = len(self.songs)
+        return self.songs[start:stop:step]
 
     def __len__(self):
         return len(self.songs)

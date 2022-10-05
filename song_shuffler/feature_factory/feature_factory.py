@@ -1,4 +1,4 @@
-from feature_factory.dance_feature.dance_feature import DanceFeature
+from song_shuffler.feature_factory.dance_feature.dance_feature import DanceFeature
 
 
 
@@ -6,7 +6,7 @@ class FeatureFactory:
 
     @staticmethod
     def get_features():
-        return [DanceFeature(),
+        return [DanceFeature()
                 #Popularity() to be implemented
                 ]
 

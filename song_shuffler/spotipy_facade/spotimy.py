@@ -2,7 +2,7 @@ from typing import List
 
 import spotipy as sp
 
-from spotipy_facade.spotipy_authenticator import SpotipyAuthenticator
+from song_shuffler.spotipy_facade.spotipy_authenticator import SpotipyAuthenticator
 
 
 class Spotimy:
