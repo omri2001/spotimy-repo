@@ -13,7 +13,7 @@ class SongManager:
 
     def get_song(self, song_uri: str):
         song_detailes = self.spotify.track(song_uri)
-        return Song(song_detailes['name'], song_detailes['id'])
+        return Song(song_detailes['name'], song_detailes['id'], self.spotify.audio_features(song_uri))
 
     def get_song_uri(self, song_detailes: Dict[str, Any]):
         return song_detailes['id']
