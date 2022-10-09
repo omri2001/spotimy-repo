@@ -1,9 +1,10 @@
 from typing import List
 
 from spotipy import Spotify
+from tqdm import tqdm
 
 from song_shuffler.playlist_manipulator.song import Song
-from song_shuffler.spotipy_facade.music_handler.songs import SongManager
+from song_shuffler.spotipy_facade.music_handler.songs_manager import SongManager
 from song_shuffler.spotipy_facade.utils import get_all_pages
 
 

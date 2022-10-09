@@ -1,5 +1,5 @@
 import random
-from typing import List
+from typing import List, Dict
 
 from song_shuffler.playlist_manipulator.song import Song
 from song_shuffler.playlist_manipulator.song_list import SongList
@@ -25,9 +25,8 @@ class Playlist:
     def add_songs(self, songs: List[Song]):
         self.unplayed.add(songs)
 
-    def normalize(self):
-        # needs to be all weights
-        self.unplayed.normalize_weights()
+    def weighted_shuffle(self, features_weights: Dict[str, float]):
+        self.unplayed.re_order_by_weights(features_weights)
 
     def play_song(self):
         # maybe problem is you can ad a song to be next but never play it but itll be like it played
@@ -46,9 +45,6 @@ class Playlist:
     def reset_playlist(self):
         self.unplayed = SongList(self.unplayed.songs() + self.played.songs())
         self.played = SongList.init_empty()
-
-    def get_all_songs(self) -> List[Song]:
-        return self.unplayed + self.played()
 
     def __iter__(self):
         return self

@@ -10,10 +10,11 @@ save_path = r"C:\Users\USER\Desktop\song_app\song_shuffler\playlist_manipulator\
 
 class Song:
 
-    def __init__(self, name: str, id: str):
+    def __init__(self, name: str, id: str, spotimy_features: Dict[str,str]):
         self.name: str = name
         self.id: str = id
-        self.features: Dict[str, Feature] = self._init_features()
+        self.features = FeatureFactory.get_features()
+        self.score = self._calculate_features(spotimy_features)
 
     def create_features(self, audio_features):
         features = audio_features.asbuiltin()
@@ -25,17 +26,19 @@ class Song:
     def set_feature_weight(self, feature_name, feature_weight):
         self.features[feature_name].re_evaluate(feature_weight)
 
-    def calculate_features(self):
-        self.features = {feature_name: feature.calculate() for feature_name, feature in self.features.items()}
+    def recalculate_song_score(self, feature_weights: Dict[str,float]):
+        self.score = self.get_song_score(feature_weights)
+
+    def get_song_score(self, feature_weights: Dict[str,float]) -> float:
+        song_score = 0
+        for feature in self.features:
+            if feature.name in feature_weights:
+                song_score += (feature.weight * feature_weights[feature.name])
+        return song_score
 
     def save_song(self):
         with open(f'{save_path}/{self.id}', 'wb') as fout:
             pickle.dump([feature for feature in self.features], fout)
-
-    def _init_features(self) -> Dict[str, Feature]:
-        if self._is_song_exist():
-            return self._load_features()
-        return {feature.name: feature for feature in FeatureFactory.get_features()}
 
     def _is_song_exist(self) -> bool:
         return self.id in listdir(save_path)
@@ -47,3 +50,7 @@ class Song:
         new_features = {feature.name: feature for feature in FeatureFactory.get_features()}
         loaded_features.update(new_features)
         return loaded_features
+
+    def _calculate_features(self, spotimy_features: Dict[str, str]):
+        for feature in self.features:
+            feature.calculate(spotimy_features)

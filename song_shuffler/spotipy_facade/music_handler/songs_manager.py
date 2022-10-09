@@ -5,6 +5,9 @@ from spotipy import Spotify
 from song_shuffler.playlist_manipulator.song import Song
 from song_shuffler.spotipy_facade.utils import get_all_pages
 
+EMPTY_SONG_AUDIO_FEATURES = {'danceability': 0.0001, 'energy': 0.0001, 'key': 0.0001, 'loudness': 0.0001, 'mode': 0.0001,
+                             'speechiness': 0.0001, 'acousticness': 0.0001, 'instrumentalness': 0.0001, 'liveness': 0.0001,
+                             'valence': 0.0001, 'tempo': 0.0001, 'duration_ms': 0.0001, 'time_signature': 0.0001}
 
 class SongManager:
 
@@ -13,7 +16,11 @@ class SongManager:
 
     def get_song(self, song_uri: str):
         song_detailes = self.spotify.track(song_uri)
-        return Song(song_detailes['name'], song_detailes['id'], self.spotify.audio_features(song_uri))
+        song_audio_features = self.spotify.audio_features(song_uri)[0]
+        if song_audio_features == None:
+            song_audio_features = EMPTY_SONG_AUDIO_FEATURES
+        song_audio_features.update({'popularity': song_detailes['popularity']/100})
+        return Song(song_detailes['name'], song_detailes['id'], song_audio_features)
 
     def get_song_uri(self, song_detailes: Dict[str, Any]):
         return song_detailes['id']

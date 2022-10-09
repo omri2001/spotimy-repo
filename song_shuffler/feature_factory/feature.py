@@ -1,3 +1,4 @@
+from abc import abstractmethod
 
 
 class Feature:
@@ -12,5 +13,6 @@ class Feature:
     def re_evaluate(self, weight):
         self.weight = weight
 
+    @abstractmethod
     def calculate(self, song_features):
         pass

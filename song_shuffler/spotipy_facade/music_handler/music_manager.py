@@ -1,6 +1,6 @@
 from song_shuffler.spotipy_facade.music_handler.albums import AlbumManager
-from song_shuffler.spotipy_facade.music_handler.playlists import PlaylistManager
-from song_shuffler.spotipy_facade.music_handler.songs import SongManager
+from song_shuffler.spotipy_facade.music_handler.playlists_manager import PlaylistManager
+from song_shuffler.spotipy_facade.music_handler.songs_manager import SongManager
 
 
 class MusicManager(SongManager, PlaylistManager, AlbumManager):
