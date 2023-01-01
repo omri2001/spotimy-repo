@@ -1,7 +1,7 @@
 from typing import List
 
-from song_shuffler.feature_factory.feature_factory import FeatureFactory
-from song_shuffler.playlist_manipulator.song import Song
+from testing.features.FeatureFactory import FeatureFactory
+from testing.song.Song import Song
 
 
 class Queue:
@@ -10,11 +10,17 @@ class Queue:
         self.songs = songs
         self.feature_name_to_weights = {feature_name: 100 for feature_name in FeatureFactory.get_features_names()}
 
+    @classmethod
+    def init_empty(cls):
+        return cls([])
+
+    @property
+    def song_names(self) -> List[str]:
+        return [song.name for song in self.songs]
+
     def smart_shuffle(self):
         pass
     def random_shuffle(self):
         pass
-    def add_song(self):
-        pass
-    def remove_song(self):
-        pass
+    def add_song(self, song: Song):
+        self.songs.append(song)

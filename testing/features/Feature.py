@@ -1,14 +1,14 @@
 from abc import abstractmethod
-from typing import Dict, Union
+
+from testing.song.song_info import SongInfo
 
 
 class Feature:
 
     @abstractmethod
-    @property
     def name(self) -> str:
         pass
 
     @abstractmethod
-    def calculate(self, song_info: Dict[str, Union[str, float]]) -> float:
+    def calculate(self, song_info: SongInfo) -> float:
         pass
