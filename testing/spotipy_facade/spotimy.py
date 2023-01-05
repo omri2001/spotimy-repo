@@ -1,15 +1,17 @@
-from typing import List
-
 import spotipy as sp
 
+from testing.spotipy_facade.music_handler.music_manager import MusicManager
 from testing.spotipy_facade.spotipy_authenticator import SpotipyAuthenticator
 
 
 class Spotimy:
 
-    def __init__(self, client_id: str, client_secret: str, redirect_uri: str, scopes: List[str]):
-        self.authenticator = SpotipyAuthenticator(client_id, client_secret, redirect_uri, scopes)
+    def __init__(self):
+        self.authenticator = SpotipyAuthenticator()
         self.spotify = sp.Spotify(auth=self.authenticator.get_token())
+
+        self.music_manager = MusicManager(self.spotify)
+
 
     def play(self, device_id: str):
         self.spotify.start_playback(device_id)

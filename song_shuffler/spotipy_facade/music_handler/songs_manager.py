@@ -1,9 +1,9 @@
-from typing import List, Dict, Any
+from typing import Dict, Any
 
 from spotipy import Spotify
 
 from song_shuffler.playlist_manipulator.song import Song
-from song_shuffler.spotipy_facade.utils import get_all_pages
+from testing.spotipy_facade.utils import get_all_pages
 
 EMPTY_SONG_AUDIO_FEATURES = {'danceability': 0.0001, 'energy': 0.0001, 'key': 0.0001, 'loudness': 0.0001, 'mode': 0.0001,
                              'speechiness': 0.0001, 'acousticness': 0.0001, 'instrumentalness': 0.0001, 'liveness': 0.0001,

@@ -1,3 +1,4 @@
+import random
 from typing import List
 
 from testing.features.FeatureFactory import FeatureFactory
@@ -13,14 +14,13 @@ class Queue:
     @classmethod
     def init_empty(cls):
         return cls([])
-
     @property
     def song_names(self) -> List[str]:
         return [song.name for song in self.songs]
-
-    def smart_shuffle(self):
-        pass
-    def random_shuffle(self):
-        pass
     def add_song(self, song: Song):
         self.songs.append(song)
+    def smart_shuffle(self):
+        raise NotImplementedError
+    def random_shuffle(self):
+        random.shuffle(self.songs)
+
